@@ -139,7 +139,7 @@ func main() {
     database.InitDB()
     r := routes.SetupRouter()
     r.Run(":8080")
-}```
+}
 ```
 ---
 ## 🎯 How to Run the Project

@@ -140,9 +140,8 @@ func main() {
     r := routes.SetupRouter()
     r.Run(":8080")
 }```
-
+```
 ---
-
 ## 🎯 How to Run the Project
 ### 1. Clone the Repository
 ```bash

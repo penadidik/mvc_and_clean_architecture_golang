@@ -9,11 +9,11 @@ type UserUsecase struct {
     userRepo repository.UserRepository
 }
 
-func (u UserUsecase) GetAllUsers() ([]domain.User, error) {
+func (u UserUsecase) GetAllUsers() ([]domains.User, error) {
     return u.userRepo.GetAll()
 }
 
-func (u UserUsecase) CreateUser(user domain.User) error {
+func (u UserUsecase) CreateUser(user domains.User) error {
     return u.userRepo.Create(user)
 }
 

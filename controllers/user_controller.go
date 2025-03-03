@@ -1,7 +1,7 @@
 package controllers
 
 import (
-    "backend_architecture_golang/domain"
+    "backend_architecture_golang/domains"
     "backend_architecture_golang/usecase"
     "github.com/gin-gonic/gin"
     "net/http"
@@ -21,7 +21,7 @@ func (uc UserController) GetUsers(c *gin.Context) {
 }
 
 func (uc UserController) CreateUser(c *gin.Context) {
-    var user domain.User
+    var user domains.User
     if err := c.ShouldBindJSON(&user); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
         return

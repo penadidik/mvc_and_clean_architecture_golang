@@ -7,13 +7,13 @@ import (
 
 type UserRepositoryImpl struct {}
 
-func (u UserRepositoryImpl) GetAll() ([]domain.User, error) {
-    var users []domain.User
+func (u UserRepositoryImpl) GetAll() ([]domains.User, error) {
+    var users []domains.User
     result := database.DB.Find(&users)
     return users, result.Error
 }
 
-func (u UserRepositoryImpl) Create(user domain.User) error {
+func (u UserRepositoryImpl) Create(user domains.User) error {
     result := database.DB.Create(&user)
     return result.Error
 }

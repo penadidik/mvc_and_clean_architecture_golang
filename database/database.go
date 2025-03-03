@@ -1,7 +1,7 @@
 package database
 
 import (
-    "backend_architechture/domains"
+    "backend_architecture_golang/domains"
     "gorm.io/driver/sqlite"
     "gorm.io/gorm"
 )
@@ -13,7 +13,7 @@ func InitDB() {
     if err != nil {
         panic("Failed to connect to database")
     }
-    db.AutoMigrate(&models.User{})
+    db.AutoMigrate(&domains.User{})
     DB = db
 }
 

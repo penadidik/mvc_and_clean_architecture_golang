@@ -1,24 +1,36 @@
 package controllers
 
 import (
-    "backend_architecture_golang/models"
-    "backend_architecture_golang/database"
+    "backend_architecture_golang/domain"
+    "backend_architecture_golang/usecase"
     "github.com/gin-gonic/gin"
     "net/http"
 )
 
-func GetUsers(c *gin.Context) {
-    var users []models.User
-    database.DB.Find(&users)
+type UserController struct {
+    userUsecase usecase.UserUsecase
+}
+
+func (uc UserController) GetUsers(c *gin.Context) {
+    users, err := uc.userUsecase.GetAllUsers()
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
     c.JSON(http.StatusOK, users)
 }
 
-func CreateUser(c *gin.Context) {
-    var user models.User
+func (uc UserController) CreateUser(c *gin.Context) {
+    var user domain.User
     if err := c.ShouldBindJSON(&user); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
         return
     }
-    database.DB.Create(&user)
+    err := uc.userUsecase.CreateUser(user)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
     c.JSON(http.StatusCreated, user)
 }
+

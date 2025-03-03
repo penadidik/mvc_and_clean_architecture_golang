@@ -1,7 +1,7 @@
 package database
 
 import (
-    "backend_architecture_golang/models"
+    "backend_architechture/domains"
     "gorm.io/driver/sqlite"
     "gorm.io/gorm"
 )
@@ -16,3 +16,4 @@ func InitDB() {
     db.AutoMigrate(&models.User{})
     DB = db
 }
+
